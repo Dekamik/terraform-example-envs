@@ -1,11 +1,8 @@
 resource "digitalocean_project" "applio" {
   name = "Applio"
   
-  resources = [ 
+  resources = concat([ 
     digitalocean_database_cluster.postgres_dev.urn,
     digitalocean_database_cluster.postgres.urn,
-
-    module.applio_dev.droplet_urn,
-    module.applio_prod.droplet_urn
-  ]
+  ], var.project_resource_urns)
 }
