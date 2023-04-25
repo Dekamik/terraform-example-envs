@@ -1,10 +1,5 @@
 module "shared" {
   source = "./shared"
-
-  project_resource_urns = [
-    module.applio_dev.droplet_urn,
-    module.applio_prod.droplet_urn
-  ]
 }
 
 module "applio_dev" {
@@ -19,4 +14,12 @@ module "applio_prod" {
 
   env = "prod"
   postgres_db_cluster_id = module.shared.postgres_prod_cluster_id
+}
+
+resource "digitalocean_project_resources" "project_resources" {
+  project = module.shared.project_id
+  resources = [
+    module.applio_dev.droplet_urn,
+    module.applio_prod.droplet_urn
+  ]
 }
