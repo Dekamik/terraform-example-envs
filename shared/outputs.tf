@@ -1,11 +1,23 @@
-output "postgres_prod_cluster_id" {
+output "vpc_uuid" {
+  value = digitalocean_vpc.applio.id
+}
+
+output "vpc_urn" {
+  value = digitalocean_vpc.applio.urn
+}
+
+output "postgres_cluster_id" {
   value = digitalocean_database_cluster.postgres.id
 }
 
-output "postgres_dev_cluster_id" {
-	value = digitalocean_database_cluster.postgres_dev.id
+output "postgres_cluster_urn" {
+  value = digitalocean_database_cluster.postgres.urn
 }
 
-output "project_id" {
-	value = digitalocean_project.applio.id
+output "mongo_cluster_id" {
+	value = digitalocean_database_cluster.mongo.id
+}
+
+output "mongo_cluster_urn" {
+  value = digitalocean_database_cluster.mongo.urn
 }
